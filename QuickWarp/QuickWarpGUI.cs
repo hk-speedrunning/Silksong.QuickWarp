@@ -17,6 +17,7 @@ public class QuickWarpGUI : MonoBehaviour
     private int sceneSelection = 0;
     
     private List<MapZone> mapZones;
+    private List<string> sceneNames = [];
     private string[] mapZoneSelectionStrings = [];
     private string[] sceneSelectionStrings = [];
     private string[] transitionSelectionStrings = [];
@@ -37,7 +38,7 @@ public class QuickWarpGUI : MonoBehaviour
     
     public void OnGUI ()
     {
-        if (GameManager.instance.IsNonGameplayScene()) return;
+        if (GameManager.instance?.IsNonGameplayScene() == true) return;
         if (!Enabled) return;
         
         GUILayout.BeginArea(new Rect(550, 25, 500, 800));
@@ -85,13 +86,13 @@ public class QuickWarpGUI : MonoBehaviour
     private void UpdateMapZone(int selection)
     {
         var zone = mapZones[selection];
-        sceneSelectionStrings = Warp.GetSceneNames(zone).ToArray();
+        sceneNames = Warp.GetSceneNames(zone).ToList();
+        sceneSelectionStrings = sceneNames.ToArray();
     }
 
     private void UpdateScene(int selection)
     {
-        var zone = mapZones[selection];
-        var scene = Warp.GetSceneNames(zone)[selection];
+        var scene = sceneNames[selection];
 
         transitionSelectionStrings = new List<string> { "Select" }.Concat(Warp.GetTransitionNames(scene)).ToArray();
     }
