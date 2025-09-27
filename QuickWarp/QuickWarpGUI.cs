@@ -86,7 +86,7 @@ public class QuickWarpGUI : MonoBehaviour
     private void UpdateMapZone(int selection)
     {
         var zone = mapZones[selection];
-        sceneNames = Warp.GetSceneNames(zone).ToList();
+        sceneNames = Warp.GetSceneNames(zone).OrderBy(x => x).ToList();
         sceneSelectionStrings = sceneNames.ToArray();
     }
 
@@ -94,7 +94,7 @@ public class QuickWarpGUI : MonoBehaviour
     {
         var scene = sceneNames[selection];
 
-        transitionSelectionStrings = new List<string> { "Select" }.Concat(Warp.GetTransitionNames(scene)).ToArray();
+        transitionSelectionStrings = new List<string> { "Select" }.Concat(Warp.GetTransitionNames(scene).OrderBy(x => x)).ToArray();
     }
     
     

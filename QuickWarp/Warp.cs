@@ -1,16 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GlobalEnums;
-using JetBrains.Annotations;
-using UnityEngine;
 
 namespace QuickWarp;
 
 public static class Warp
 {
-    public static Vector2 pos;
     
     private static Dictionary<string, SceneTeleportMap.SceneInfo> _scenes;
     private static Dictionary<MapZone, List<string>> _scenes_by_map_zone = new();
