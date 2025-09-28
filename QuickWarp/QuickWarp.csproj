@@ -20,7 +20,7 @@
     <PropertyGroup>
         <!--These properties will control the generated plugin info. Version is also used by various parts of the build system.-->
         <AssemblyTitle>QuickWarp</AssemblyTitle>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
     </PropertyGroup>
 
     <ItemGroup>
