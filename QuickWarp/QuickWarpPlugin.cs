@@ -1,5 +1,6 @@
 using BepInEx;
 using BepInEx.Configuration;
+using BepInEx.Logging;
 using UnityEngine;
 
 namespace QuickWarp;
@@ -13,9 +14,12 @@ public partial class QuickWarpPlugin : BaseUnityPlugin
     
     public static QuickWarpPlugin Instance;
     
+    internal static ManualLogSource? Log { get; private set; }
+
     private void Awake()
     {
         Instance = this;
+        Log = Logger;
         quickWarpKeyName = Config.Bind("General", "Toggle QuickWarp menu", "F5");
     }
     
