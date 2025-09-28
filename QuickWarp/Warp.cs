@@ -20,17 +20,17 @@ public static class Warp
 
     public static string[] GetAreaNames()
     {
-        return _scenes_by_area.Keys.ToArray();
+        return [.. _scenes_by_area.Keys];
     }
 
-    public static List<string> GetSceneNames(string areaName)
+    public static string[] GetSceneNames(string areaName)
     {
-        return _scenes_by_area[areaName];
+        return [.. _scenes_by_area[areaName].OrderBy(x => x)];
     }
 
-    public static List<string> GetTransitionNames(string sceneName)
+    public static string[] GetTransitionNames(string sceneName)
     {
-        return _transitions_by_scene[sceneName];
+        return [.. _transitions_by_scene[sceneName].OrderBy(x => x)];
     }
 
     public static void BuildRefs()
