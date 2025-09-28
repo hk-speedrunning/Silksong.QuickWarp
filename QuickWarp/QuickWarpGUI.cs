@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using GlobalEnums;
 using UnityEngine;
 
 namespace QuickWarp;
@@ -8,22 +6,24 @@ namespace QuickWarp;
 public class QuickWarpGUI : MonoBehaviour
 {
     public bool Enabled;
-    
-    private Vector2 mapScrollVector = Vector2.zero;
-    private Vector2 sceneScrollVector = Vector2.zero;
-    private Vector2 transitionScrollVector = Vector2.zero;
-    
-    private int areaSelection = 0;
-    private int sceneSelection = 0;
-    
-    private List<string> sceneNames = [];
-    private string[] areaSelectionStrings = [];
-    private string[] sceneSelectionStrings = [];
-    private string[] transitionSelectionStrings = [];
-    
+
+    private Vector2 _mapScrollVector = Vector2.zero;
+    private Vector2 _sceneScrollVector = Vector2.zero;
+    private Vector2 _transitionScrollVector = Vector2.zero;
+
+    private int _areaSelection;
+    private int _sceneSelection;
+    private int _transitionSelection;
+
+    private string[] _areaNames = [];
+    private string[] _sceneNames = [];
+    private string[] _transitionNames = [];
+
     public void Awake()
     {
-        areaSelectionStrings = Warp.GetAreaNames();
+        _areaNames = Warp.GetAreaNames();
+        _sceneNames = Warp.GetSceneNames(_areaNames[0]).OrderBy(x => x).ToArray();
+        _transitionNames = Warp.GetTransitionNames(_sceneNames[0]).OrderBy(x => x).ToArray();
     }
 
     public void Update()
@@ -33,67 +33,60 @@ public class QuickWarpGUI : MonoBehaviour
             Enabled = !Enabled;
         }
     }
-    
-    public void OnGUI ()
+
+    public void OnGUI()
     {
         if (GameManager.instance?.IsNonGameplayScene() == true) return;
         if (!Enabled) return;
-        
+
         GUILayout.BeginArea(new Rect(550, 25, 500, 800));
-        
-            GUILayout.BeginHorizontal();
-                GUILayout.BeginVertical(); // MapZone
-                    mapScrollVector = GUILayout.BeginScrollView(mapScrollVector);
-                        var _areaSelection = GUILayout.SelectionGrid(areaSelection, areaSelectionStrings, 1);
-                    GUILayout.EndScrollView();
-                GUILayout.EndVertical();
-                GUILayout.BeginVertical(); // Scene
-                    sceneScrollVector = GUILayout.BeginScrollView(sceneScrollVector);
-                        var _sceneSelection = GUILayout.SelectionGrid(sceneSelection, sceneSelectionStrings, 1);
-                    GUILayout.EndScrollView();
-                GUILayout.EndVertical();
-                GUILayout.BeginVertical(); // Transition
-                    transitionScrollVector = GUILayout.BeginScrollView(transitionScrollVector);
-                        var _transitionSelection = GUILayout.SelectionGrid(0, transitionSelectionStrings, 1);
-                    GUILayout.EndScrollView();
-                GUILayout.EndVertical();
-            GUILayout.EndHorizontal();
-        
+        GUILayout.BeginHorizontal();
+
+        GUILayout.BeginVertical(); // Area
+        _mapScrollVector = GUILayout.BeginScrollView(_mapScrollVector);
+        var areaSelection = GUILayout.SelectionGrid(_areaSelection, _areaNames, 1);
+        GUILayout.EndScrollView();
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical(); // Scene
+        _sceneScrollVector = GUILayout.BeginScrollView(_sceneScrollVector);
+        var sceneSelection = GUILayout.SelectionGrid(_sceneSelection, _sceneNames, 1);
+        GUILayout.EndScrollView();
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical(); // Transition
+        _transitionScrollVector = GUILayout.BeginScrollView(_transitionScrollVector);
+        _transitionSelection = GUILayout.SelectionGrid(_transitionSelection, _transitionNames, 1);
+        GUILayout.EndScrollView();
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical(); // Warp button
+        var buttonPressed = GUILayout.Button("Warp");
+        GUILayout.EndVertical();
+
+        GUILayout.EndHorizontal();
         GUILayout.EndArea();
 
-        if (_transitionSelection != 0)
+        if (buttonPressed)
         {
             Enabled = false;
-            Warp.TryWarp(sceneSelectionStrings[sceneSelection], transitionSelectionStrings[_transitionSelection]);
+            Warp.TryWarp(_sceneNames[sceneSelection], _transitionNames[_transitionSelection]);
         }
 
         if (_sceneSelection != sceneSelection)
         {
-            UpdateScene(_sceneSelection);
-            sceneSelection = _sceneSelection;
+            _sceneSelection = sceneSelection;
+            _transitionNames = Warp.GetTransitionNames(_sceneNames[_sceneSelection]).OrderBy(x => x).ToArray();
+            _transitionSelection = 0;
         }
-        
-        if (_areaSelection != areaSelection )
+
+        if (areaSelection != _areaSelection)
         {
-            UpdateArea(_areaSelection);
-            areaSelection = _areaSelection;
-            sceneSelection = 0;
+            _areaSelection = areaSelection;
+            _sceneNames = Warp.GetSceneNames(_areaNames[_areaSelection]).OrderBy(x => x).ToArray();
+            _sceneSelection = 0;
+            _transitionNames = Warp.GetTransitionNames(_sceneNames[_sceneSelection]).OrderBy(x => x).ToArray();;
+            _transitionSelection = 0;
         }
     }
-
-    private void UpdateArea(int selection)
-    {
-        var zone = areaSelectionStrings[selection];
-        sceneNames = Warp.GetSceneNames(zone).OrderBy(x => x).ToList();
-        sceneSelectionStrings = sceneNames.ToArray();
-    }
-
-    private void UpdateScene(int selection)
-    {
-        var scene = sceneNames[selection];
-
-        transitionSelectionStrings = new List<string> { "Select" }.Concat(Warp.GetTransitionNames(scene).OrderBy(x => x)).ToArray();
-    }
-    
-    
 }
