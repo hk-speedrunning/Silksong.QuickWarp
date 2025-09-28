@@ -9,23 +9,23 @@ public static class Warp
 {
     
     private static Dictionary<string, SceneTeleportMap.SceneInfo> _scenes;
-    private static Dictionary<MapZone, List<string>> _scenes_by_map_zone = new();
+    private static Dictionary<string, List<string>> _scenes_by_area = new();
     private static Dictionary<string, List<string>> _transitions_by_scene = new(); 
     private static Dictionary<string, List<string>> _respawns_by_scene = new();
-    
-    
+
+
     private static MapZone _mapZone;
     private static string _sceneName;
     private static string _transitionName;
 
-    public static List<MapZone> GetMapZones()
+    public static string[] GetAreaNames()
     {
-        return _scenes_by_map_zone.Keys.ToList();
+        return _scenes_by_area.Keys.ToArray();
     }
 
-    public static List<string> GetSceneNames(MapZone mapZone)
+    public static List<string> GetSceneNames(string areaName)
     {
-        return _scenes_by_map_zone[mapZone];
+        return _scenes_by_area[areaName];
     }
 
     public static List<string> GetTransitionNames(string sceneName)
@@ -36,17 +36,27 @@ public static class Warp
     public static void BuildRefs()
     {
         _scenes = SceneTeleportMap.Instance.sceneList.RuntimeData;
-        _scenes_by_map_zone.Clear();
+        _scenes_by_area = JsonUtil.Deserialize<Dictionary<string, List<string>>>("QuickWarp.Resources.scenes_by_area.json");
         _transitions_by_scene.Clear();
         _respawns_by_scene.Clear();
         
         foreach (var (sceneName, sceneData) in _scenes)
         {
-            _scenes_by_map_zone.TryAdd(sceneData.MapZone, []);
-            _scenes_by_map_zone[sceneData.MapZone].Add(sceneName);
+            if (!_scenes_by_area.SelectMany(kvp => kvp.Value).Contains(sceneName))
+            {
+                QuickWarpPlugin.Log.LogInfo($"Unsorted scene: {sceneName}, {sceneData.MapZone}, {sceneData.TransitionGates.Count}, {sceneData.RespawnPoints.Count}");
+            }
 
             _transitions_by_scene[sceneName] = sceneData.TransitionGates;
             _respawns_by_scene[sceneName] = sceneData.RespawnPoints;
+        }
+
+        foreach (var scene in _scenes_by_area.SelectMany(kvp => kvp.Value))
+        {
+            if (!_scenes.ContainsKey(scene))
+            {
+                QuickWarpPlugin.Log.LogInfo($"Unused scene: {scene}");
+            }
         }
     }
 

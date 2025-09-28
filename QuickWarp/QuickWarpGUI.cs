@@ -13,19 +13,17 @@ public class QuickWarpGUI : MonoBehaviour
     private Vector2 sceneScrollVector = Vector2.zero;
     private Vector2 transitionScrollVector = Vector2.zero;
     
-    private int mapZoneSelection = 0;
+    private int areaSelection = 0;
     private int sceneSelection = 0;
     
-    private List<MapZone> mapZones;
     private List<string> sceneNames = [];
-    private string[] mapZoneSelectionStrings = [];
+    private string[] areaSelectionStrings = [];
     private string[] sceneSelectionStrings = [];
     private string[] transitionSelectionStrings = [];
     
     public void Awake()
     {
-        mapZones = Warp.GetMapZones();
-        mapZoneSelectionStrings = mapZones.Select((x) => x.ToString()).ToArray();
+        areaSelectionStrings = Warp.GetAreaNames();
     }
 
     public void Update()
@@ -46,7 +44,7 @@ public class QuickWarpGUI : MonoBehaviour
             GUILayout.BeginHorizontal();
                 GUILayout.BeginVertical(); // MapZone
                     mapScrollVector = GUILayout.BeginScrollView(mapScrollVector);
-                        var _mapZoneSelection = GUILayout.SelectionGrid(mapZoneSelection, mapZoneSelectionStrings, 1);
+                        var _areaSelection = GUILayout.SelectionGrid(areaSelection, areaSelectionStrings, 1);
                     GUILayout.EndScrollView();
                 GUILayout.EndVertical();
                 GUILayout.BeginVertical(); // Scene
@@ -75,17 +73,17 @@ public class QuickWarpGUI : MonoBehaviour
             sceneSelection = _sceneSelection;
         }
         
-        if (_mapZoneSelection != mapZoneSelection )
+        if (_areaSelection != areaSelection )
         {
-            UpdateMapZone(_mapZoneSelection);
-            mapZoneSelection = _mapZoneSelection;
+            UpdateArea(_areaSelection);
+            areaSelection = _areaSelection;
             sceneSelection = 0;
         }
     }
 
-    private void UpdateMapZone(int selection)
+    private void UpdateArea(int selection)
     {
-        var zone = mapZones[selection];
+        var zone = areaSelectionStrings[selection];
         sceneNames = Warp.GetSceneNames(zone).OrderBy(x => x).ToList();
         sceneSelectionStrings = sceneNames.ToArray();
     }
