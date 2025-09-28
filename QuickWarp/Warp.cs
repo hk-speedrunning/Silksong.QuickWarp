@@ -42,22 +42,22 @@ public static class Warp
         
         foreach (var (sceneName, sceneData) in _scenes)
         {
-            if (!_scenes_by_area.SelectMany(kvp => kvp.Value).Contains(sceneName))
-            {
-                QuickWarpPlugin.Log.LogInfo($"Unsorted scene: {sceneName}, {sceneData.MapZone}, {sceneData.TransitionGates.Count}, {sceneData.RespawnPoints.Count}");
-            }
+            // if (!_scenes_by_area.SelectMany(kvp => kvp.Value).Contains(sceneName))
+            // {
+            //     QuickWarpPlugin.Log.LogInfo($"Unsorted scene: {sceneName}, {sceneData.MapZone}, {sceneData.TransitionGates.Count}, {sceneData.RespawnPoints.Count}");
+            // }
 
             _transitions_by_scene[sceneName] = sceneData.TransitionGates;
             _respawns_by_scene[sceneName] = sceneData.RespawnPoints;
         }
 
-        foreach (var scene in _scenes_by_area.SelectMany(kvp => kvp.Value))
-        {
-            if (!_scenes.ContainsKey(scene))
-            {
-                QuickWarpPlugin.Log.LogInfo($"Unused scene: {scene}");
-            }
-        }
+        // foreach (var scene in _scenes_by_area.SelectMany(kvp => kvp.Value))
+        // {
+        //     if (!_scenes.ContainsKey(scene))
+        //     {
+        //         QuickWarpPlugin.Log.LogInfo($"Unused scene: {scene}");
+        //     }
+        // }
     }
 
     public static void TryWarp(string sceneName, string transitionName)
