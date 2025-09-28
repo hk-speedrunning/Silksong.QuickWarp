@@ -38,16 +38,16 @@ public class QuickWarpGUI : MonoBehaviour
         if (GameManager.instance?.IsNonGameplayScene() == true) return;
         if (!Enabled) return;
 
-        GUILayout.BeginArea(new Rect(550, 25, 500, 800));
+        GUILayout.BeginArea(new Rect(550, 25, 520, 800));
         GUILayout.BeginHorizontal();
 
-        GUILayout.BeginVertical(); // Area
+        GUILayout.BeginVertical(GUILayout.Width(140)); // Area
         _mapScrollVector = GUILayout.BeginScrollView(_mapScrollVector);
         var areaSelection = GUILayout.SelectionGrid(_areaSelection, _areaNames, 1);
         GUILayout.EndScrollView();
         GUILayout.EndVertical();
 
-        GUILayout.BeginVertical(GUILayout.MaxHeight(400)); // Scene
+        GUILayout.BeginVertical(GUILayout.MaxHeight(400), GUILayout.MinWidth(150), GUILayout.MaxWidth(230), GUILayout.ExpandWidth(false)); // Scene
         _sceneScrollVector = GUILayout.BeginScrollView(_sceneScrollVector);
         var sceneSelection = GUILayout.SelectionGrid(_sceneSelection, _sceneNames, 1);
         GUILayout.EndScrollView();
