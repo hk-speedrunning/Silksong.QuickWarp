@@ -90,19 +90,21 @@
     "Coral_Judge_Arena",
     "Room_Pinstress"
   ],
-  "Cogwork Core": [
-    "Cog_04",
-    "Cog_05",
-    "Cog_06",
-    "Cog_07",
-    "Cog_08",
-    "Cog_09",
-    "Cog_09_Destroyed",
-    "Cog_10",
-    "Cog_10_Destroyed",
-    "Cog_Bench",
-    "Cog_Dancers",
-    "Cog_Pass"
+  "Bone Bottom": [
+    "Aspid_01",
+    "Bellway_01",
+    "Bone_01b",
+    "Bone_05b",
+    "Bone_11",
+    "Bone_11b",
+    "Bone_Steel_Servant",
+    "Bonegrave",
+    "Bonetown",
+    "Chapel_Wanderer",
+    "Memory_Red", // Unmapped
+    "Mosstown_01",
+    "Mosstown_02",
+    "Mosstown_02c"
   ],
   "Choral Chambers": [
     "Bellshrine_Enclave",
@@ -138,6 +140,32 @@
     "Song_Enclave",
     "Song_Enclave_Tube",
     "Under_07b"
+  ],
+  "Cogwork Core": [
+    "Cog_04",
+    "Cog_05",
+    "Cog_06",
+    "Cog_07",
+    "Cog_08",
+    "Cog_09",
+    "Cog_09_Destroyed",
+    "Cog_10",
+    "Cog_10_Destroyed",
+    "Cog_Bench",
+    "Cog_Dancers",
+    "Cog_Pass"
+  ],
+  "The Cradle": [
+    "Cradle_01",
+    "Cradle_01_Destroyed",
+    "Cradle_02",
+    "Cradle_02b",
+    "Cradle_03",
+    "Cradle_03_Destroyed",
+    "Memory_Silk_Heart_LaceTower", // Unmapped
+    "Song_Tower_01",
+    "Song_Tower_Destroyed",
+    "Tube_Hub"
   ],
   "Deep Docks": [
     "Bellshrine_05",
@@ -325,21 +353,26 @@
     "Arborium_11",
     "Arborium_Tube"
   ],
-  "Bone Bottom": [
-    "Aspid_01",
-    "Bellway_01",
-    "Bone_01b",
-    "Bone_05b",
-    "Bone_11",
-    "Bone_11b",
-    "Bone_Steel_Servant",
-    "Bonegrave",
-    "Bonetown",
-    "Chapel_Wanderer",
-    "Memory_Red", // Unmapped
-    "Mosstown_01",
-    "Mosstown_02",
-    "Mosstown_02c"
+  "The Mist": [
+    "Dust_Maze_01", // Unmapped
+    "Dust_Maze_02", // Unmapped
+    "Dust_Maze_03", // Unmapped
+    "Dust_Maze_04", // Unmapped
+    "Dust_Maze_05", // Unmapped
+    "Dust_Maze_06", // Unmapped
+    "Dust_Maze_07", // Unmapped
+    "Dust_Maze_08", // Unmapped
+    "Dust_Maze_09_entrance", // Unmapped
+    "Dust_Maze_crossing", // Unmapped
+    "Dust_Maze_Last_Hall" // Unmapped
+  ],
+  "Moss Grotto": [
+    "Tut_01",
+    "Tut_01b",
+    "Tut_02",
+    "Tut_03",
+    "Tut_04",
+    "Tut_05" // Unmapped
   ],
   "Mount Fay": [
     "Bellway_Peak",
@@ -362,14 +395,6 @@
     "Peak_12",
     "Peak_Mask_Maker"
   ],
-  "Moss Grotto": [
-    "Tut_01",
-    "Tut_01b",
-    "Tut_02",
-    "Tut_03",
-    "Tut_04",
-    "Tut_05" // Unmapped
-  ],
   "Putrified Ducts": [
     "Aqueduct_01",
     "Aqueduct_02",
@@ -383,7 +408,7 @@
     "Bellway_Aqueduct",
     "Room_Huntress"
   ],
-  "Sands Of Karak": [
+  "Sands of Karak": [
     "Bellshrine_Coral",
     "Coral_23",
     "Coral_24",
@@ -443,31 +468,6 @@
     "Dust_Chef",
     "Dust_Maze_08_completed",
     "Dust_Shack"
-  ],
-  "The Cradle": [
-    "Cradle_01",
-    "Cradle_01_Destroyed",
-    "Cradle_02",
-    "Cradle_02b",
-    "Cradle_03",
-    "Cradle_03_Destroyed",
-    "Memory_Silk_Heart_LaceTower", // Unmapped
-    "Song_Tower_01",
-    "Song_Tower_Destroyed",
-    "Tube_Hub"
-  ],
-  "The Mist": [
-    "Dust_Maze_01", // Unmapped
-    "Dust_Maze_02", // Unmapped
-    "Dust_Maze_03", // Unmapped
-    "Dust_Maze_04", // Unmapped
-    "Dust_Maze_05", // Unmapped
-    "Dust_Maze_06", // Unmapped
-    "Dust_Maze_07", // Unmapped
-    "Dust_Maze_08", // Unmapped
-    "Dust_Maze_09_entrance", // Unmapped
-    "Dust_Maze_crossing", // Unmapped
-    "Dust_Maze_Last_Hall" // Unmapped
   ],
   "The Slab": [
     "Memory_First_Sinner", // Unmapped
