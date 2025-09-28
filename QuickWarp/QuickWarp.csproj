@@ -20,7 +20,7 @@
     <PropertyGroup>
         <!--These properties will control the generated plugin info. Version is also used by various parts of the build system.-->
         <AssemblyTitle>QuickWarp</AssemblyTitle>
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -50,7 +50,7 @@
 
         <RemoveDir Directories="$(IntermediateOutputPath)/archive"/>
         <MakeDir Directories="$(ExportFolder)"/>
-        <Copy SourceFiles="@(Binaries)" DestinationFolder="$(IntermediateOutputPath)/archive"/>
+        <Copy SourceFiles="@(Binaries)" DestinationFolder="$(IntermediateOutputPath)/archive/$(TargetName)"/>
         <ZipDirectory SourceDirectory="$(IntermediateOutputPath)/archive" DestinationFile="$(ExportFolder)/$(TargetName).zip" Overwrite="True"/>
     </Target>
 </Project>
