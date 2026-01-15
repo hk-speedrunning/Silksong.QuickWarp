@@ -24,6 +24,12 @@
         "resolved": "2.0.1",
         "contentHash": "UDVQtYOGU1v+xkYIRubm4zSIRtCW42kWgJ3sXIbqYSD1qSseH9gU44+zQMNRCy3BYXITtwWE3RqoyJdWUjDASA=="
       },
+      "Harmonize": {
+        "type": "Direct",
+        "requested": "[1.0.5, )",
+        "resolved": "1.0.5",
+        "contentHash": "wRA1i6hDNM8NZy40FBVp1xawpfnJdSt/GXGe/mVtzbq8jDN+aa5eY0TxZ13p8SvvIwPDxIK50firGNsq/9+8hQ=="
+      },
       "HarmonyX": {
         "type": "Direct",
         "requested": "[2.9.0, )",
