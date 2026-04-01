@@ -24,6 +24,7 @@
     <RepositoryUrl>https://github.com/hk-speedrunning/QuickWarp</RepositoryUrl>
     
     <PackageId>Silksong.QuickWarp</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
