@@ -35,7 +35,8 @@ public class QuickWarpGUI : MonoBehaviour
 
     public void OnGUI()
     {
-        if (GameManager.instance?.IsNonGameplayScene() == true) return;
+        if (!GameManager.SilentInstance) return;
+        if (GameManager.SilentInstance.IsNonGameplayScene()) return;
         if (!Enabled) return;
 
         GUILayout.BeginArea(new Rect(550, 25, 520, 800));

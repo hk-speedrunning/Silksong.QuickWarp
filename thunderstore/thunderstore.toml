@@ -8,7 +8,7 @@ namespace = "hk_speedrunning"
 description = "A basic mod to warp to any scene in the game."
 
 # Replace this with a correct repo URL if the default is not accurate
-websiteUrl = "https://github.com/hk-speedrunning/QuickWarp"
+websiteUrl = "https://github.com/hk-speedrunning/Silksong.QuickWarp"
 containsNsfwContent = false
 
 
