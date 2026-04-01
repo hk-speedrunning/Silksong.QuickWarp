@@ -22,6 +22,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/hk-speedrunning/QuickWarp</RepositoryUrl>
+    
+    <PackageId>Silksong.QuickWarp</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
